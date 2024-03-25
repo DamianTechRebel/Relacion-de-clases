@@ -1,0 +1,391 @@
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws ParseException {
+
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Banco> bancos = new ArrayList<Banco>();
+        ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+
+        while (true) {
+
+            System.out.println("===>INGRESAR DATOS DEL BANCO<===");
+            System.out.print("nombre del banco: ");
+            String nombreDelBanco = scanner.nextLine();
+
+            System.out.print("numero de sucursal: ");
+            long numeroDeSucursal = scanner.nextLong();
+            scanner.nextLine();
+
+            System.out.print("direccion (nombre y numero de calle): ");
+            String direccion = scanner.nextLine();
+
+            System.out.print("telefono: ");
+            long telefono = scanner.nextLong();
+            scanner.nextLine();
+
+            bancos.add(new Banco(nombreDelBanco, numeroDeSucursal, direccion, telefono));
+
+            while (true) {
+                System.out.println("===>INGRESAR DATOS DEL EMPLEADO<===");
+
+                System.out.print("Nombre: ");
+                String nombreEmpleado = scanner.nextLine();
+
+                System.out.print("Apellido: ");
+                String apellidoEmpleado = scanner.nextLine();
+
+                System.out.print("Edad: ");
+                short edadEmpleado = scanner.nextShort();
+                scanner.nextLine();
+
+                System.out.print("Sexo (M/F):");
+                char sexoEmpleado = scanner.next().charAt(0);
+                scanner.nextLine();
+
+                System.out.print("direccion (nombre y numero de calle): ");
+                String direccionEmpleado = scanner.nextLine();
+
+                System.out.print("telefono: ");
+                long telefonoEmpleado = scanner.nextLong();
+                scanner.nextLine();
+
+                empleados.add(new Empleado(nombreEmpleado, apellidoEmpleado, edadEmpleado, sexoEmpleado, direccionEmpleado, telefonoEmpleado));
+
+                System.out.print("Ingresar mas empleados? (S/N): ");
+                String continuar = scanner.nextLine();
+                if (!continuar.equalsIgnoreCase("S")) {
+                    break;
+                }
+            }
+            while (true) {
+
+                System.out.println("===>INGRESAR DATOS DEL CLIENTE<===");
+
+                System.out.print("Nombre: ");
+                String nombreCliente = scanner.nextLine();
+
+                System.out.print("Apellido: ");
+                String apellidoCliente = scanner.nextLine();
+
+                System.out.print("Edad: ");
+                short edadCliente = scanner.nextShort();
+                scanner.nextLine();
+
+                System.out.print("Sexo (M/F):");
+                char sexoCliente = scanner.next().charAt(0);
+                scanner.nextLine();
+
+                System.out.print("direccion (nombre y numero de calle): ");
+                String direccionCliente = scanner.nextLine();
+
+                System.out.print("telefono: ");
+                long telefonoCliente = scanner.nextLong();
+                scanner.nextLine();
+
+                System.out.print("numero de cuenta: ");
+                long numeroDeCuenta = scanner.nextLong();
+                scanner.nextLine();
+
+                System.out.print("dinero depositado:" + " $");
+                long dineroDepositado = scanner.nextLong();
+                scanner.nextLine();
+
+                System.out.print("fecha de alta (dia/mes/año): ");
+                Date fechaAlta = new SimpleDateFormat("dd/MM/yyyy").parse(scanner.nextLine());
+
+                System.out.print("fecha de baja (dia/mes/año): ");
+                Date fechaBaja = new SimpleDateFormat("dd/MM/yyyy").parse(scanner.nextLine());
+
+                clientes.add(new Cliente(nombreCliente, apellidoCliente, edadCliente, sexoCliente, direccionCliente, telefonoCliente, numeroDeCuenta, dineroDepositado, fechaAlta, fechaBaja));
+
+                System.out.print("Ingresar mas clientes? (S/N): ");
+                String continuar1 = scanner.nextLine();
+                if (!continuar1.equalsIgnoreCase("S")) {
+                    break;
+                }
+            }
+
+            System.out.print("Ingresar mas bancos? (S/N): ");
+            String continuar1 = scanner.nextLine();
+            if (!continuar1.equalsIgnoreCase("S")) {
+                break;
+            }
+        }
+
+    }
+}
+
+
+
+
+//System.out.println(formateador.format(new Date()));
+
+
+import java.util.ArrayList;
+import java.util.List;
+public class Banco {
+     String nombreDelBanco;
+     long numeroDeSucursal;
+     String direccion;
+     long telefono;
+     List<Empleado> empleados;
+     List<Cliente> clientes;
+
+     public Banco(String nombreDelBanco, long numeroDeSucursal, String direccion, long telefono){
+         this.nombreDelBanco = nombreDelBanco;
+         this.numeroDeSucursal = numeroDeSucursal;
+         this.direccion = direccion;
+         this.telefono = telefono;
+         this.empleados = new ArrayList<>();
+         this.clientes = new ArrayList<>();
+     }
+
+    public Banco() {
+
+    }
+
+    public String getNombreDelBanco() {
+        return nombreDelBanco;
+    }
+
+    public long getNumeroDeSucursal() {
+        return numeroDeSucursal;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public List<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setNombreDelBanco(String nombreDelBanco) {
+        this.nombreDelBanco = nombreDelBanco;
+    }
+
+    public void setNumeroDeSucursal(long numeroDeSucursal) {
+        this.numeroDeSucursal = numeroDeSucursal;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+}
+
+
+
+public class Empleado {
+
+    String nombre;
+    String apellido;
+    short edad;
+    char sexo;
+    String direccion;
+    long telefono;
+
+    public Empleado(String nombre, String apellido, short edad, char sexo, String direccion, long telefono){
+
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
+
+    public Empleado() {
+
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public short getEdad() {
+        return edad;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setEdad(short edad) {
+        this.edad = edad;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
+    }
+}
+
+
+
+
+import java.util.Date;
+public class Cliente {
+
+    String nombre;
+    String apellido;
+    short edad;
+    char sexo;
+    String direccion;
+    long telefono;
+    long numeroDeCuenta;
+    long dineroDepositado;
+    Date fechaDeAlta;
+    Date fechaDeBaja;
+
+    public Cliente(String nombre, String apellido, short edad, char sexo, String direccion, long telefono, long numeroDeCuenta, long dineroDepositado, Date fechaDeAlta, Date fechaDeBaja){
+
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.numeroDeCuenta = numeroDeCuenta;
+        this.dineroDepositado = dineroDepositado;
+        this.fechaDeAlta = fechaDeAlta;
+        this.fechaDeBaja = fechaDeBaja;
+    }
+
+    public Cliente() {
+
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public short getEdad() {
+        return edad;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public long getNumeroDeCuenta() {
+        return numeroDeCuenta;
+    }
+
+    public double getDineroDepositado() {
+        return dineroDepositado;
+    }
+
+    public Date getFechaDeAlta() {
+        return fechaDeAlta;
+    }
+
+    public Date getFechaDeBaja() {
+        return fechaDeBaja;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setEdad(short edad) {
+        this.edad = edad;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setNumeroDeCuenta(long numeroDeCuenta) {
+        this.numeroDeCuenta = numeroDeCuenta;
+    }
+
+    public void setDineroDepositado(long dineroDepositado) {
+        this.dineroDepositado = dineroDepositado;
+    }
+
+    public void setFechaDeAlta(Date fechaDeAlta) {
+        this.fechaDeAlta = fechaDeAlta;
+    }
+
+    public void setFechaDeBaja(Date fechaDeBaja) {
+        this.fechaDeBaja = fechaDeBaja;
+    }
+}
